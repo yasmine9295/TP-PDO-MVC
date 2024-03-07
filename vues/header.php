@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="https://bootswatch.com/4/cerulean/bootstrap.css">
     <link rel="canonical" href="https://getbootstrap.com/docs/4.2/examples/jumbotron/">
     <script src="https://kit.fontawesome.com/08fbe9231c.js" crossorigin="anonymous"></script>
-        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
 
     <style>
     .bd-placeholder-img {
@@ -54,7 +54,8 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-user"></i>  Gestion des auteurs</a>
+                        aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-user"></i> Gestion des
+                        auteurs</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown01">
                         <a class="dropdown-item" href="#">Liste des auteurs</a>
                         <a class="dropdown-item" href="#">Ajouter un auteur</a>
@@ -63,15 +64,37 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-flag"></i>   Gestion des nationalités</a>
+                        aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-flag"></i> Gestion des
+                        nationalités</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown01">
                         <a class="dropdown-item" href="listeNationalites.php">Liste des nationalités</a>
                         <a class="dropdown-item" href="formeNationalite.php">Ajouter une nationalité</a>
                     </div>
                 </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false"> Gestion des
+                        continents</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdown01">
+                        <a class="dropdown-item" href="index.php?uc=continents&action=list">Liste des continents</a>
+                        <a class="dropdown-item" href="#">Ajouter un continent</a>
+                    </div>
+                </li>
             </ul>
         </div>
     </nav>
-
-
-    
+    <?php
+        if (!empty($_SESSION['message'])) {
+        $mesMessages = $_SESSION['message'];
+        foreach ($mesMessages as $key => $message) {
+        echo '<div class="container pt-5">
+            <div class="alert alert-' . $key . ' alert-dismissible fade show" role="alert">' . $message . '
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true"></span>
+                </button>
+            </div>
+        </div>';
+        }
+        $_SESSION['message'] = [];
+        }
+        ?>

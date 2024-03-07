@@ -57,8 +57,8 @@ class Continent {
         $req=MonPdo::getInstance()->prepare("Select * from continent");
         $req->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE,'Continent');
         $req->execute();
-        $lesResultats=$req->fetchAll(;
-        return$lesResultats;)
+        $lesResultats=$req->fetchAll();
+        return $lesResultats;
     }
     /**
      * Trouvre un continent par son num
@@ -74,8 +74,8 @@ class Continent {
         $req->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE,'Continent');
         $req->bindParam(':id', $id);
         $req->execute();
-        $lesResultats=$req->fetch(;
-        return $leResultats;)
+        $lesResultats=$req->fetch();
+        return $leResultats;
     }
     /**
      * Permet d'ajouter un continent
