@@ -61,4 +61,7 @@ $("a[data-suppression]").click(function(){
 </body>
 
 </html>
+<?php 
+ob_end_flush();
+
 

@@ -2,6 +2,7 @@
 include "vues/header.php";
 include "modeles/Continent.php";
 include "modeles/monPdo.php";
+include "vues/messagesFlash.php";
 
 
 $uc =empty($_GET['uc']) ? "accueil" : $_GET['uc'];
