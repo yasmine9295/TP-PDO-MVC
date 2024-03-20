@@ -57,8 +57,8 @@
                         aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-user"></i> Gestion des
                         auteurs</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown01">
-                        <a class="dropdown-item" href="#">Liste des auteurs</a>
-                        <a class="dropdown-item" href="#">Ajouter un auteur</a>
+                        <a class="dropdown-item" href="index.php?uc=auteurs&action=list">Liste des auteurs</a>
+                        <a class="dropdown-item" href="index.php?uc=auteurs&action=add">Ajouter un auteur</a>
                         <a class="dropdown-item" href="#">rechercher un auteur</a>
                     </div>
                 </li>

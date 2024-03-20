@@ -104,7 +104,7 @@ class Continent {
         $req=MonPdo::getInstance()->prepare("update continent set libelle= :libelle where num= :id");
         $num=$continent->getNum();
         $libelle=$continent->getLibelle();
-        $req->bindParam(':id' , $num);
+        $req->bindParam(':id' , $continent->$num);
         $req->bindParam(':libelle' , $libelle);
         $nb=$req->execute();
         return $nb;
