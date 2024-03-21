@@ -20,7 +20,7 @@ class Nationalite {
      *
      * @var int
      */
-    private $numContinent;
+    private $numNationalitet;
 
     /**
      * Get the value of num
