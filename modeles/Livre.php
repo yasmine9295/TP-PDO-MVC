@@ -37,7 +37,7 @@ class Livre {
     /**
      * ecrit dans le titre
      *
-     * @param string $libelle
+     * @param string $titre
      * @return self
      */
     public function settitre(string $titre) : self

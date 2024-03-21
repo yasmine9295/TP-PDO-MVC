@@ -6,6 +6,7 @@ include "modeles/monPdo.php";
 include "vues/messagesFlash.php";
 include "modeles/Auteur.php";
 include "modeles/Livre.php";
+include "modeles/Genre.php";
 
 $uc =empty($_GET['uc']) ? "accueil" : $_GET['uc'];
 
@@ -21,6 +22,9 @@ switch($uc){
         break;
     case 'livres' :
         include('controllers/livreController.php');
+        break;
+    case 'genres' :
+        include('controllers/genreController.php');
         break;
 }
 

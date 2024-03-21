@@ -30,12 +30,12 @@ switch($action){
     case 'valideForm' : 
         $auteur= new Auteur();
         if(empty($_POST['num'])) {// cas d'une création
-            $auteur->setLibelle($_POST['libelle']);
+            $auteur->setNom($_POST['libelle']);
             $nb=Auteur::add($auteur);
             $message = "ajouté";
         }else{ // cas d'une modif
             $auteur->setNum($_POST['libelle']);
-            $auteur->setLibelle($_POST['libelle']);
+            $auteur->setNom($_POST['libelle']);
             $nb=Auteur::update($auteur);
             $message = "modifié";
         }
