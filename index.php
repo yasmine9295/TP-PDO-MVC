@@ -7,6 +7,7 @@ include "vues/messagesFlash.php";
 include "modeles/Auteur.php";
 include "modeles/Livre.php";
 include "modeles/Genre.php";
+include "modeles/Nationalite.php";
 
 $uc =empty($_GET['uc']) ? "accueil" : $_GET['uc'];
 
@@ -26,6 +27,9 @@ switch($uc){
     case 'genres' :
         include('controllers/genreController.php');
         break;
+        case 'nationalite' :
+            include('controllers/nationaliteController.php');
+            break;
 }
 
 include "vues/footer.php";?>

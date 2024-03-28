@@ -3,7 +3,7 @@ $action=$_GET['action'];
 
 switch($action){
     case 'list' : 
-    $lesContinents=Genre::findAll();
+    $lesGenres=Genre::findAll();
     include('vues/listeGenres.php');
     break;
     case 'add' :
@@ -12,16 +12,16 @@ switch($action){
     break;
     case 'update' :
         $mode="Modifier";
-        $continent=Genre::findById($_GET['num']);
+        $genre=Genre::findById($_GET['num']);
         include('vues/formGenre.php');
     break;
     case 'delete' : 
-        $continent=Genre::findById($_GET['num']);
+        $genre=Genre::findById($_GET['num']);
         $nb=Genre::delete($genre);
         if($nb==1){
             $_SESSION['message']=["success"=>"Le genre a bien été supprimé"];       
         }else{
-            $_SESSION['message']=["success"=>"Le genre n'a bien été supprimé"];
+            $_SESSION['message']=["success"=>"Le genre n'a pas été supprimé"];
         }
         header('location: index.php?uc=genres&action=list');
             exit();

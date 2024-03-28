@@ -40,7 +40,7 @@ class Livre {
      * @param string $titre
      * @return self
      */
-    public function settitre(string $titre) : self
+    public function setTitre(string $titre) : self
     {
     $this->titre = $titre;
 
@@ -68,7 +68,7 @@ class Livre {
      */
 
 
-    public static function findById(int $id) :int
+    public static function findById (int $id) :int
     {
         $req=MonPdo::getInstance()->prepare("Select * from livre where num= :id");
         $req->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE,'Livre');

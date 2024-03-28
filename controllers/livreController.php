@@ -21,7 +21,7 @@ switch($action){
         if($nb==1){
             $_SESSION['message']=["success"=>"Le livre a bien été supprimé"];       
         }else{
-            $_SESSION['message']=["success"=>"Le livre n'a bien été supprimé"];
+            $_SESSION['message']=["success"=>"Le livre n'a pas été supprimé"];
         }
         header('location: index.php?uc=livres&action=list');
             exit();

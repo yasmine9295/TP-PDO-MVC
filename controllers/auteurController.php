@@ -21,7 +21,7 @@ switch($action){
         if($nb==1){
             $_SESSION['message']=["success"=>"Le auteur a bien été supprimé"];       
         }else{
-            $_SESSION['message']=["success"=>"Le auteur n'a bien été supprimé"];
+            $_SESSION['message']=["success"=>"Le auteur n'a pas été supprimé"];
         }
         header('location: index.php?uc=auteurs&action=list');
             exit();
