@@ -13,7 +13,8 @@
   <thead>
     <tr class="d-flex">
       <th scope="col"class="col-md-2">Numéro</th>
-      <th scope="col"class="col-md-8">Libellé</th>
+      <th scope="col"class="col-md-4">Référence</th>
+      <th scope="col"class="col-md-4">Libellé</th>
       <th scope="col"class="col-md-2">Actions</th>
     </tr>
   </thead>
@@ -23,7 +24,8 @@
         echo "<tr class='d-flex'>";
 
             echo "<td class='col-md-2'>".$livre->getnum()."</td>";
-            echo "<td class='col-md-8'>".$livre->gettitre()."</td>";       
+            echo "<td class='col-md-4'>".$livre->getisbn()."</td>";
+            echo "<td class='col-md-4'>".$livre->gettitre()."</td>";      
             echo "<td class='col-md-2'>
                 <a href='index.php?uc=livres&action=update&num=" .$livre->getnum()."' class='btn btn-primary'><i class='fas fa-pen'></i></a>
                 <a href='#modalSuppression' data-toggle='modal' data-message='Voulez vous supprimer ce livre ?' data-suppression='index.php?uc=livres&action=delete&num=".$livre->getNum()."' class='btn btn-danger'><i class='far fa-trash-alt'></i></a>

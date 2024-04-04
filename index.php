@@ -27,9 +27,11 @@ switch($uc){
     case 'genres' :
         include('controllers/genreController.php');
         break;
-        case 'nationalite' :
-            include('controllers/nationaliteController.php');
-            break;
+    case 'nationalites' :
+        include('controllers/nationaliteController.php');
+        break;
 }
 
 include "vues/footer.php";?>
+
+

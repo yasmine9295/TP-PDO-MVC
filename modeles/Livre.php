@@ -15,6 +15,12 @@ class Livre {
      */
     private $titre;
 
+    /**
+     * Ref du livre
+     * 
+     * @var int
+     */
+    private $isbn;
 
     /**
      * Get the value of num
@@ -86,8 +92,10 @@ class Livre {
     public static function add(Livre $livre) :int
     {
         $req=MonPdo::getInstance()->prepare("insert into livre(titre) values(:titre)");
-        $titre=$livre->getLibelle();
-        $req->bindParam(':libelle' ,$titre);
+        $titre=$livre->getTitre();
+        $isbn=$livre->getIsbn();
+        $req->bindParam(':titre' ,$titre);
+        $req->bindParam(':isbn' ,$isbn);
         $nb=$req->execute();
         return $nb;
     }
@@ -104,8 +112,10 @@ class Livre {
         $req=MonPdo::getInstance()->prepare("update livre set titre= :titre where num= :id");
         $num=$livre->getNum();
         $titre=$livre->getTitre();
+        $isbn=$livre->getIsbn();
         $req->bindParam(':id' , $livre->$num);
         $req->bindParam(':titre' , $titre);
+        $req->bindParam(':isbn' , $isbn);
         $nb=$req->execute();
         return $nb;
     }
@@ -137,6 +147,30 @@ class Livre {
     public function setNum(int $num) :self
     {
         $this->num = $num;
+
+        return $this;
+    }
+
+    /**
+     * Get ref du livre
+     *
+     * @return  int
+     */ 
+    public function getIsbn()
+    {
+        return $this->isbn;
+    }
+
+    /**
+     * Set ref du livre
+     *
+     * @param  int  $isbn  Ref du livre
+     *
+     * @return  self
+     */ 
+    public function setIsbn(int $isbn)
+    {
+        $this->isbn = $isbn;
 
         return $this;
     }

@@ -26,7 +26,7 @@
             echo "<td class='col-md-8'>".$nationalite->getLibelle()."</td>";       
             echo "<td class='col-md-2'>
                 <a href='index.php?uc=nationalites&action=update&num=" .$nationalite->getNum()."' class='btn btn-primary'><i class='fas fa-pen'></i></a>
-                <a href='#modalSuppression' data-toggle='modal' data-message='Voulez vous supprimer ce nationalite$nationalite ?' data-suppression='index.php?uc=nationalites&action=delete&num=".$nationalite->getNum()."' class='btn btn-danger'><i class='far fa-trash-alt'></i></a>
+                <a href='#modalSuppression' data-toggle='modal' data-message='Voulez vous supprimer cette nationalite ?' data-suppression='index.php?uc=nationalites&action=delete&num=".$nationalite->getNum()."' class='btn btn-danger'><i class='far fa-trash-alt'></i></a>
             </td>";
         echo "</tr>";
 

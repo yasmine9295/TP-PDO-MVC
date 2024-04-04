@@ -5,7 +5,7 @@
         class="col-md-6 offset-md-3 border border-primary p-3">
         <div class="form-group">
             <label for='titre'> Titre </label>
-            <input type="text" class='form-control' id='libelle' placehoder='Saisir le libellé' name='libelle'
+            <input type="text" class='form-control' id='libelle' placehoder='Saisir le libellé' name='titre'
                 value="<?php if($mode == "Modifier") {echo $livre->getprenom() ;}?>">
         </div>
         <input type="hidden" id="num" name="num"
