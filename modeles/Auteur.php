@@ -14,7 +14,13 @@ class Auteur {
      * @var string
      */
     private $nom;
-    
+
+    /**
+     * 
+     * 
+     * @var string
+     */
+    private $prenom;
     
 
 
@@ -89,7 +95,9 @@ class Auteur {
     {
         $req=MonPdo::getInstance()->prepare("insert into auteur(nom) values(:nom)");
         $nom=$auteur->getNom();
+        $prenom=$auteur->getPrenom();
         $req->bindParam(':nom' ,$nom);
+        $req->bindParam(':prénom' ,$prenom);
         $nb=$req->execute();
         return $nb;
     }
@@ -106,6 +114,7 @@ class Auteur {
         $req=MonPdo::getInstance()->prepare("update auteur set nom= :nom where num= :id");
         $num=$auteur->getNum();
         $nom=$auteur->getLibelle();
+        $prenom=$auteur->getPrenom();
         $req->bindParam(':id' , $auteur->$num);
         $req->bindParam(':libelle' , $nom);
         $nb=$req->execute();
@@ -139,6 +148,30 @@ class Auteur {
     public function setNum(int $num) :self
     {
         $this->num = $num;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of prenom
+     *
+     * @return  string
+     */ 
+    public function getPrenom()
+    {
+        return $this->prenom;
+    }
+
+    /**
+     * Set the value of prenom
+     *
+     * @param  string  $prenom
+     *
+     * @return  self
+     */ 
+    public function setPrenom(string $prenom)
+    {
+        $this->prenom = $prenom;
 
         return $this;
     }

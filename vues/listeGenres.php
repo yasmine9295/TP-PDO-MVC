@@ -26,7 +26,7 @@
             echo "<td class='col-md-8'>".$genre->getLibelle()."</td>";       
             echo "<td class='col-md-2'>
                 <a href='index.php?uc=genres&action=update&num=" .$genre->getnum()."' class='btn btn-primary'><i class='fas fa-pen'></i></a>
-                <a href='#modalSuppression' data-toggle='modal' data-message='Voulez vous supprimer ce genre ?' data-suppression='index.php?uc=continents&action=delete&num=".$genre->getNum()."' class='btn btn-danger'><i class='far fa-trash-alt'></i></a>
+                <a href='#modalSuppression' data-toggle='modal' data-message='Voulez vous supprimer ce genre ?' data-suppression='index.php?uc=genres&action=delete&num=".$genre->getNum()."' class='btn btn-danger'><i class='far fa-trash-alt'></i></a>
             </td>";
         echo "</tr>";
 

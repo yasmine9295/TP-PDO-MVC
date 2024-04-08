@@ -14,6 +14,7 @@ private static $mdp='08012005' ;
 private static $monPdo;
 private static $unPdo = null;
 
+
 //	Constructeur privé, crée l'instance de PDO qui sera sollicitée
 //	pour toutes les méthodes de la classe
 private function __construct()
