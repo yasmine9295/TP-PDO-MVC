@@ -3,7 +3,15 @@ $action=$_GET['action'];
 
 switch($action){
     case 'list' : 
-    $lesNationalites=Nationalite::findAll();
+        // traitement du formulaire de recherche
+    $libelle="";
+    $continentSel="Tous";
+    if(!empty($_POST['libelle']) || !empty($_POST['continent'])){
+        $libelle=$_POST['libelle'];
+        $continentSel= $_POST['continent'];
+    }
+    $lesContinents=Continent::findAll();
+    $lesNationalites=Nationalite::findAll($libelle, $continentSel);
     include('vues/listeNationalites.php');
     break;
     case 'add' :
