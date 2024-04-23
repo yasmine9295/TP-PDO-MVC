@@ -18,6 +18,22 @@ class Livre {
     /**
      * 
      * 
+     * @var string
+     */
+    private $auteur;
+
+    /**
+     * 
+     * 
+     * @var string
+     */
+    private $genre;
+
+
+
+    /**
+     * 
+     * 
      * @var int
      */
     private $annee;
@@ -82,13 +98,25 @@ class Livre {
     return $this;
     }
 
+  
+
     /**
      * Retourne l'ensemble des livres
      *
      * @return Livre[] tableau d'objet titre
      */
-    public static function findAll() :array
+    public static function findAll(?string $reference="", ?string $genre="Tous") :array
+
     {
+        $texteReq = "select n.num as numero, n.reference as 'libLivre', c.reference as 'libGenre' FROM livre n, genre c where n.numGenre = c.num";
+    if ($reference !== "") {
+        $texteReq .= " and n.reference like '%" . $reference . "%'";
+    }
+    if ($reference !== "Tous") {
+        $texteReq .= " and c.num = " . $genre;
+    }
+    
+        $texteReq .= " order by n.reference";
         $req=MonPdo::getInstance()->prepare("Select * from livre");
         $req->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE,'Livre');
         $req->execute();
@@ -120,17 +148,12 @@ class Livre {
      */
     public static function add(Livre $livre) :int
     {
-        $req=MonPdo::getInstance()->prepare("insert into livre(titre) values(:titre)");
-        $titre=$livre->getTitre();
+        $req=MonPdo::getInstance()->prepare("insert into livre(isbn) values(:isbn)");
         $isbn=$livre->getIsbn();
-        $langue=$livre->getLangue();
-        $editeur=$livre->getEditeur();
-        $req->bindParam(':titre' ,$titre);
         $req->bindParam(':isbn' ,$isbn);
-        $req->bindParam(':editeur' ,$editeur);
-        $req->bindParam(':langue' ,$langue);
         $nb=$req->execute();
         return $nb;
+        
     }
 
     /**
@@ -145,18 +168,8 @@ class Livre {
         $req=MonPdo::getInstance()->prepare("update livre set titre= :titre where num= :id");
         $num=$livre->getNum();
         $annee=$livre->getAnnee();
-        $prix=$livre->getPrix();
-        $titre=$livre->getTitre();
-        $isbn=$livre->getIsbn();
-        $langue=$livre->getLangue();
-        $editeur=$livre->getEditeur();
         $req->bindParam(':id' , $livre->$num);
-        $req->bindParam(':p' , $livre->$prix);
-        $req->bindParam(':titre' , $titre);
-        $req->bindParam(':isbn' , $isbn);
-        $req->bindParam(':editeur' , $editeur);
         $req->bindParam(':a' , $livre->$annee);
-        $req->bindParam(':langue' , $langue);
         $nb=$req->execute();
         return $nb;
     }
@@ -312,6 +325,54 @@ class Livre {
     public function setLangue(string $langue)
     {
         $this->langue = $langue;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of auteur
+     *
+     * @return  string
+     */ 
+    public function getAuteur()
+    {
+        return $this->auteur;
+    }
+
+    /**
+     * Set the value of auteur
+     *
+     * @param  string  $auteur
+     *
+     * @return  self
+     */ 
+    public function setAuteur(string $auteur)
+    {
+        $this->auteur = $auteur;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of genre
+     *
+     * @return  string
+     */ 
+    public function getGenre()
+    {
+        return $this->genre;
+    }
+
+    /**
+     * Set the value of genre
+     *
+     * @param  string  $genre
+     *
+     * @return  self
+     */ 
+    public function setGenre(string $genre)
+    {
+        $this->genre = $genre;
 
         return $this;
     }

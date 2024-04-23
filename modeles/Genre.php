@@ -90,6 +90,7 @@ class Genre {
         $req->bindParam(':libelle' ,$libelle);
         $nb=$req->execute();
         return $nb;
+
     }
 
     /**

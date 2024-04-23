@@ -3,7 +3,16 @@ $action=$_GET['action'];
 
 switch($action){
     case 'list' : 
-    $lesLivres=Livre::findAll();
+        // traitement du formulaire de recherche
+    $libelle="";
+    $genreSel="Tous";
+    if(!empty($_POST['libelle']) || !empty($_POST['genre'])){
+        $libelle=$_POST['libelle'];
+        $genreSel= $_POST['genre'];
+    }
+    $lesGenres=Genre::findAll();
+    $lesAuteurs=Auteur::findAll();
+    $lesLivres=Livre::findAll($libelle, $genreSel);
     include('vues/listeLivres.php');
     break;
     case 'add' :

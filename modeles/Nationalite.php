@@ -50,6 +50,31 @@ class Nationalite {
     return $this;
     }
 
+/**
+ *  renvoie l'objet continent associé
+ * 
+ * @return Continent
+ */
+public function getContinent() : Continent
+{
+    return Continent::findbyId($this->numContinent);
+}
+
+/**
+ * ecrit le num continent
+ * 
+ * @param Continent $continent
+ * @return self
+ */
+public function setContinent(Continent $continent) : self
+{
+    $this->numContinent = $continent->getNum();
+
+    return $this;
+}
+
+
+
     /**
      * Retourne l'ensemble des nationalites
      *
@@ -57,17 +82,22 @@ class Nationalite {
      */
     public static function findAll(?string $libelle="", ?string $continent="Tous") :array
     {
-        $texteReq="select n.num as numero, n.libelle as 'libNation', c.libelle as 'libContinent' from nationalite n, continent c where n.numContinent = c.num";
-        if ($libelle != "") {$texteReq .= " and n.libelle like '%" . $libelle . "%'";}
-        if ($continent != "Tous") {$texteReq .= " and c.num = " . $continent;}
-        
-        $texteReq.= "order by n.libelle";
-        $req=MonPdo::getInstance()->prepare($texteReq);
-        $req->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE,'nationalite');
-        $req->execute();
-        $lesResultats=$req->fetchAll();
-        return $lesResultats;
+        $texteReq = "select n.num as numero, n.libelle as 'libNation', c.libelle as 'libContinent' FROM nationalite n, continent c where n.numContinent = c.num";
+    if ($libelle !== "") {
+        $texteReq .= " and n.libelle like '%" . $libelle . "%'";
     }
+    if ($continent !== "Tous") {
+        $texteReq .= " and c.num = " . $continent;
+    }
+    
+    $texteReq .= " order by n.libelle";
+    $req = MonPdo::getInstance()->prepare($texteReq);
+    $req->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'nationalite');
+    $req->execute();
+    $lesResultats = $req->fetchAll();
+    return $lesResultats;
+}
+    
     /**
      * Trouvre un nationalite par son num
      * 

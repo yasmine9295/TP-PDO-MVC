@@ -34,7 +34,6 @@ switch($action){
             $nb=Genre::add($genre);
             $message = "ajouté";
         }else{ // cas d'une modif
-            $genre->setNum($_POST['libelle']);
             $genre->setLibelle($_POST['libelle']);
             $nb=Genre::update($genre);
             $message = "modifié";

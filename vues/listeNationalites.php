@@ -1,5 +1,3 @@
-
-
 <div class="container mt-5">
     <div class="row pt-3">
         <div class="col-9">
@@ -12,38 +10,43 @@
         </div>
     </div>
 
-    
-    <form id="formRecherche" action="index.php?uc=nationalites&action=list" method="post" class="border border-primary rounded p-3">
+
+    <form id="formRecherche" action="index.php?uc=nationalites&action=list" method="post"
+        class="border border-primary rounded p-3 mt-3 mb-3">
+       
         <div class="row">
-        <div class="col">
-            <input type="text" class='form-control' id='libelle' placeholder='saisir le libelle' name='libelle' value="<?php if($action == "Modifier") {echo $laNationalite->libelle ;} ?>">
-</div>
-<div class="col">
-<select name="continent" class="form-control">
-    <?php
+            <div class="col">
+
+                <input type="text" class='form-control' id='libelle' placeholder='saisir le libelle' name='libelle'>
+                    
+            </div>
+            
+            <div class="col">
+                <select name="continent" class="form-control">
+                    <?php
     foreach($lesContinents as $continent){
-      $selection=$continent->getNum() == $continentSel ? 'selected' : '';
+      $selection = $continent->getNum() == $continentSel ? 'selected' : '';
         echo "<option value='".$continent->getNum()."'". $selection.">".$continent->getLibelle()."</option>";
     }
       ?>
-      </select>
-</div>
-<div class="col">
-    <button type="submit" class="btn btn-success btn-block"> Rechercher</button>
-</div>
+                </select>
+            </div>
+            <div class="col">
+                <button type="submit" class="btn btn-info btn-block"> Rechercher</button>
+            </div>
 
 
-    <table class="table table-hover table-striped">
-  <thead>
-    <tr class="d-flex">
-      <th scope="col"class="col-md-2">Numéro</th>
-      <th scope="col"class="col-md-4">Libellé</th>
-      <th scope="col"class="col-md-4">Continent</th>
-      <th scope="col"class="col-md-2">Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <?php
+            <table class="table table-hover table-striped">
+                <thead>
+                    <tr class="d-flex">
+                        <th scope="col" class="col-md-2">Numéro</th>
+                        <th scope="col" class="col-md-4">Libellé</th>
+                        <th scope="col" class="col-md-4">Continent</th>
+                        <th scope="col" class="col-md-2">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
     foreach($lesNationalites as $nationalite){
         echo "<tr class='d-flex'>";
 
@@ -63,11 +66,11 @@
 // supprimerNationalite.php?num=$nationalite->num
 
     ?>
- 
-   
-    
-  </tbody>
-</table>    
 
 
-</div>
+
+                </tbody>
+            </table>
+
+
+        </div>

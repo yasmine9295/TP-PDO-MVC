@@ -9,10 +9,23 @@
         <div class="form-group">
             <label for='libelle'> Libellé </label>
             <input type="text" class='form-control' id='libelle' placehoder='Saisir le libellé' name='libelle'
-                value="<?php if($mode == "Modifier") {echo $nationalite->getlibelle() ;}?>">
+                value="<?php if($mode == "Modifier") {echo $nationalite->getLibelle() ;}?>">
         </div>
+        <div class="form-group">
+            <label for='continent'> Continents </label>
+            <select name="continent" class="form-control">
+                <?php
+                foreach ($lesContinents as $continent) {
+                    $selection = $continent->getNum() == $laNationalite->getContinent()->getNum() ?'selected' : '';
+                    echo "<option value='".$continent->getNum()."'". $selection.">".$continent->getLibelle()."</option>";
+                }
+                ?>
+                </select>
+            </div>
+
+
         <input type="hidden" id="num" name="num"
-            value="<?php if($mode == "Modifier") {echo $nationalite->getnum() ;}?>">
+            value="<?php if($mode == "Modifier") {echo $laNationalite->getNum() ;}?>">
         <div class="row">
             <div class="col"> <a href="index.php?uc=nationalites&action=list" class='btn btn-primary btn-block'> Revenir à
                     la liste</a></div>
