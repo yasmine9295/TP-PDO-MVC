@@ -3,8 +3,8 @@ $action=$_GET['action'];
 
 switch($action){
     case 'list' : 
-    $lesNationalites=Nationalite::findAll();
-    include('vues/listeNationalites.php');
+    $lesContinents=Continent::findAll();
+    include('vues/listeContinents.php');
     break;
     case 'add' :
         $mode="Ajouter";
@@ -34,9 +34,9 @@ switch($action){
             $nb=Nationalite::add($nationalite);
             $message = "ajouté";
         }else{ // cas d'une modif
-            $nationalite->setNum($_POST['libelle']);
-            $nationalite->setLibelle($_POST['libelle']);
-            $nb=Nationalite::update($nationalite);
+            $continent->setNum($_POST['libelle']);
+            $continent->setLibelle($_POST['libelle']);
+            $nb=Continent::update($continent);
             $message = "modifié";
         }
         if($nb==1){

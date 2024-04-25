@@ -1,12 +1,42 @@
 <?php
 class Livre {
 
+
+    /**
+     * 
+     * 
+     * @var int
+     */
+    private $prix;
     /**
      * numero du livre
      * 
      * @var int
      */
     private $num;
+
+    /**
+     * 
+     * 
+     * @var string
+     */
+    private $auteur;
+
+    /**
+     * 
+     * 
+     * @var string
+     */
+    private $genre;
+
+
+
+    /**
+     * 
+     * 
+     * @var int
+     */
+    private $annee;
 
     /**
      * Libelle du Livre
@@ -21,6 +51,21 @@ class Livre {
      * @var int
      */
     private $isbn;
+
+    /**
+     * 
+     * 
+     * @var string
+     */
+    private $langue;
+
+    /**
+     * 
+     * 
+     * @var string
+     */
+    private $editeur;
+
 
     /**
      * Get the value of num
@@ -53,13 +98,25 @@ class Livre {
     return $this;
     }
 
+  
+
     /**
      * Retourne l'ensemble des livres
      *
      * @return Livre[] tableau d'objet titre
      */
-    public static function findAll() :array
+    public static function findAll(?string $reference="", ?string $genre="Tous") :array
+
     {
+        $texteReq = "select n.num as numero, n.reference as 'libLivre', c.reference as 'libGenre' FROM livre n, genre c where n.numGenre = c.num";
+    if ($reference !== "") {
+        $texteReq .= " and n.reference like '%" . $reference . "%'";
+    }
+    if ($reference !== "Tous") {
+        $texteReq .= " and c.num = " . $genre;
+    }
+    
+        $texteReq .= " order by n.reference";
         $req=MonPdo::getInstance()->prepare("Select * from livre");
         $req->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE,'Livre');
         $req->execute();
@@ -91,13 +148,12 @@ class Livre {
      */
     public static function add(Livre $livre) :int
     {
-        $req=MonPdo::getInstance()->prepare("insert into livre(titre) values(:titre)");
-        $titre=$livre->getTitre();
+        $req=MonPdo::getInstance()->prepare("insert into livre(isbn) values(:isbn)");
         $isbn=$livre->getIsbn();
-        $req->bindParam(':titre' ,$titre);
         $req->bindParam(':isbn' ,$isbn);
         $nb=$req->execute();
         return $nb;
+        
     }
 
     /**
@@ -111,11 +167,9 @@ class Livre {
     {
         $req=MonPdo::getInstance()->prepare("update livre set titre= :titre where num= :id");
         $num=$livre->getNum();
-        $titre=$livre->getTitre();
-        $isbn=$livre->getIsbn();
+        $annee=$livre->getAnnee();
         $req->bindParam(':id' , $livre->$num);
-        $req->bindParam(':titre' , $titre);
-        $req->bindParam(':isbn' , $isbn);
+        $req->bindParam(':a' , $livre->$annee);
         $nb=$req->execute();
         return $nb;
     }
@@ -131,7 +185,11 @@ class Livre {
 {
     $req=MonPdo::getInstance()->prepare("delete from livre where num= :id");
     $num=$livre->getNum();
+    $annee=$livre->getAnnee();
+    $prix=$livre->getPrix();
+    $req->bindParam(':id' ,$prix);
     $req->bindParam(':id' ,$num);
+    $req->bindParam(':d' ,$annee);
     $nb=$req->execute();
     return $nb;
 }
@@ -171,6 +229,150 @@ class Livre {
     public function setIsbn(int $isbn)
     {
         $this->isbn = $isbn;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of prix
+     *
+     * @return  int
+     */ 
+    public function getPrix()
+    {
+        return $this->prix;
+    }
+
+    /**
+     * Set the value of prix
+     *
+     * @param  int  $prix
+     *
+     * @return  self
+     */ 
+    public function setPrix(int $prix)
+    {
+        $this->prix = $prix;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of editeur
+     *
+     * @return  string
+     */ 
+    public function getEditeur()
+    {
+        return $this->editeur;
+    }
+
+    /**
+     * Set the value of editeur
+     *
+     * @param  string  $editeur
+     *
+     * @return  self
+     */ 
+    public function setEditeur(string $editeur)
+    {
+        $this->editeur = $editeur;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of annee
+     *
+     * @return  int
+     */ 
+    public function getAnnee()
+    {
+        return $this->annee;
+    }
+
+    /**
+     * Set the value of annee
+     *
+     * @param  int  $annee
+     *
+     * @return  self
+     */ 
+    public function setAnnee(int $annee)
+    {
+        $this->annee = $annee;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of langue
+     *
+     * @return  string
+     */ 
+    public function getLangue()
+    {
+        return $this->langue;
+    }
+
+    /**
+     * Set the value of langue
+     *
+     * @param  string  $langue
+     *
+     * @return  self
+     */ 
+    public function setLangue(string $langue)
+    {
+        $this->langue = $langue;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of auteur
+     *
+     * @return  string
+     */ 
+    public function getAuteur()
+    {
+        return $this->auteur;
+    }
+
+    /**
+     * Set the value of auteur
+     *
+     * @param  string  $auteur
+     *
+     * @return  self
+     */ 
+    public function setAuteur(string $auteur)
+    {
+        $this->auteur = $auteur;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of genre
+     *
+     * @return  string
+     */ 
+    public function getGenre()
+    {
+        return $this->genre;
+    }
+
+    /**
+     * Set the value of genre
+     *
+     * @param  string  $genre
+     *
+     * @return  self
+     */ 
+    public function setGenre(string $genre)
+    {
+        $this->genre = $genre;
 
         return $this;
     }

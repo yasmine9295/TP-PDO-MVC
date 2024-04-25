@@ -8,8 +8,21 @@
             <input type="text" class='form-control' id='libelle' placehoder='Saisir le libellé' name='titre'
                 value="<?php if($mode == "Modifier") {echo $livre->getprenom() ;}?>">
         </div>
+        <div class="form-group">
+            <label for='genre'> Genre </label>
+            <select name="genre" class="form-control">
+                <?php
+                foreach ($lesGenres as $genre) {
+                    $selection = $genre->getNum() == $leLivre->getGenre()->getNum() ?'selected' : '';
+                    echo "<option value='".$genre->getNum()."'". $selection.">".$genre->getReference()."</option>";
+                }
+                ?>
+                </select>
+            </div>
+
+
         <input type="hidden" id="num" name="num"
-            value="<?php if($mode == "Modifier") {echo $livre->getnum() ;}?>">
+            value="<?php if($mode == "Modifier") {echo $lelivre->getnum() ;}?>">
         <div class="row">
             <div class="col"> <a href="index.php?uc=livres&action=list" class='btn btn-primary btn-block'> Revenir à
                     la liste</a></div>

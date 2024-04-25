@@ -9,12 +9,26 @@ class Auteur {
     private $num;
 
     /**
+     * 
+     * 
+     * @var string
+     */
+    private $nationalite;
+
+
+    /**
      * Nom du auteur
      * 
      * @var string
      */
     private $nom;
-    
+
+    /**
+     * 
+     * 
+     * @var string
+     */
+    private $prenom;
     
 
 
@@ -54,8 +68,17 @@ class Auteur {
      *
      * @return Auteur[] tableau d'objet auteur
      */
-    public static function findAll() :array
+    public static function findAll(?string $num="", ?string $nationalite="Tous") :array
     {
+    
+            $texteReq = "select* from nationalite";
+        if ($num !== "") {
+            $texteReq .= " and n.num like '%" . $num . "%'";
+        }
+        if ($nationalite !== "Tous") {
+            $texteReq .= " and c.num = " . $nationalite;
+        }
+        $texteReq .= " order by n.num";
         $req=MonPdo::getInstance()->prepare("Select * from auteur");
         $req->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE,'Auteur');
         $req->execute();
@@ -82,7 +105,7 @@ class Auteur {
     /**
      * Permet d'ajouter un auteur
      *
-     * @param Auteur $continent auteur à ajouter
+     * @param Auteur $nationalite auteur à ajouter
      * @return integer resultat (1 si l'opération a reussi, 0 si non)
      */
     public static function add(Auteur $auteur) :int
@@ -105,9 +128,10 @@ class Auteur {
     {
         $req=MonPdo::getInstance()->prepare("update auteur set nom= :nom where num= :id");
         $num=$auteur->getNum();
-        $nom=$auteur->getLibelle();
+        $nom=$auteur->getnum();
+        $prenom=$auteur->getPrenom();
         $req->bindParam(':id' , $auteur->$num);
-        $req->bindParam(':libelle' , $nom);
+        $req->bindParam(':num' , $nom);
         $nb=$req->execute();
         return $nb;
     }
@@ -139,6 +163,54 @@ class Auteur {
     public function setNum(int $num) :self
     {
         $this->num = $num;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of prenom
+     *
+     * @return  string
+     */ 
+    public function getPrenom()
+    {
+        return $this->prenom;
+    }
+
+    /**
+     * Set the value of prenom
+     *
+     * @param  string  $prenom
+     *
+     * @return  self
+     */ 
+    public function setPrenom(string $prenom)
+    {
+        $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of nationalite
+     *
+     * @return  string
+     */ 
+    public function getNationalite()
+    {
+        return $this->nationalite;
+    }
+
+    /**
+     * Set the value of nationalite
+     *
+     * @param  string  $nationalite
+     *
+     * @return  self
+     */ 
+    public function setNationalite(string $nationalite)
+    {
+        $this->nationalite = $nationalite;
 
         return $this;
     }
