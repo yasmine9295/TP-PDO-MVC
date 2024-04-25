@@ -118,7 +118,7 @@ class Livre {
     
         $texteReq .= " order by n.reference";
         $req=MonPdo::getInstance()->prepare("Select * from livre");
-        $req->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE,'Livre');
+        $req->setFetchMode(PDO::FETCH_OBJ);
         $req->execute();
         $lesResultats=$req->fetchAll();
         return $lesResultats;

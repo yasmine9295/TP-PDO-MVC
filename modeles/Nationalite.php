@@ -92,7 +92,7 @@ public function setContinent(Continent $continent) : self
     
     $texteReq .= " order by n.libelle";
     $req = MonPdo::getInstance()->prepare($texteReq);
-    $req->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'nationalite');
+    $req->setFetchMode(PDO::FETCH_OBJ);
     $req->execute();
     $lesResultats = $req->fetchAll();
     return $lesResultats;

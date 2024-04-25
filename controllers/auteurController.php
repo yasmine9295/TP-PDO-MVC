@@ -15,10 +15,12 @@ switch($action){
     include('vues/listeAuteurs.php');
     break;
     case 'add' :
+        $lesNationalites=Nationalite::findAll();
         $mode="Ajouter";
         include('vues/formAuteur.php');
     break;
     case 'update' :
+        $lesNationalites=Nationalite::findAll();
         $mode="Modifier";
         $Auteurs=Auteur::findById($_GET['num']);
         include('vues/formAuteur.php');

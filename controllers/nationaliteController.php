@@ -3,8 +3,16 @@ $action=$_GET['action'];
 
 switch($action){
     case 'list' : 
+        // traitement du formulaire de recherche
+    $libelle="";
+    $continentSel="Tous";
+    if(!empty($_POST['libelle']) || !empty($_POST['continent'])){
+        $libelle=$_POST['libelle'];
+        $continentSel= $_POST['continent'];
+    }
     $lesContinents=Continent::findAll();
-    include('vues/listeContinents.php');
+    $lesNationalites=Nationalite::findAll($libelle, $continentSel);
+    include('vues/listeNationalites.php');
     break;
     case 'add' :
         $mode="Ajouter";
@@ -34,9 +42,8 @@ switch($action){
             $nb=Nationalite::add($nationalite);
             $message = "ajouté";
         }else{ // cas d'une modif
-            $continent->setNum($_POST['libelle']);
-            $continent->setLibelle($_POST['libelle']);
-            $nb=Continent::update($continent);
+            $nationalite->setLibelle($_POST['libelle']);
+            $nb=Nationalite::update($nationalite);
             $message = "modifié";
         }
         if($nb==1){

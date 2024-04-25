@@ -35,7 +35,8 @@
                 <button type="submit" class="btn btn-info btn-block"> Rechercher</button>
             </div>
 
-
+            </div>
+</form>
             <table class="table table-hover table-striped">
                 <thead>
                     <tr class="d-flex">

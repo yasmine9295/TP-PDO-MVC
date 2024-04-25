@@ -8,12 +8,6 @@ class Auteur {
      */
     private $num;
 
-    /**
-     * 
-     * 
-     * @var string
-     */
-    private $nationalite;
 
 
     /**
@@ -62,6 +56,9 @@ class Auteur {
 
     return $this;
     }
+
+
+    
 
     /**
      * Retourne l'ensemble des auteurs
@@ -191,28 +188,29 @@ class Auteur {
         return $this;
     }
 
+   
     /**
-     * Get the value of nationalite
-     *
-     * @return  string
-     */ 
-    public function getNationalite()
-    {
-        return $this->nationalite;
-    }
+ *  renvoie l'objet nationalite associé
+ * 
+ * @return Nationalite
+ */
+public function getNationalite() : Nationalite
+{
+    return Nationalite::findbyId($this->numNationalite);
+}
 
-    /**
-     * Set the value of nationalite
-     *
-     * @param  string  $nationalite
-     *
-     * @return  self
-     */ 
-    public function setNationalite(string $nationalite)
-    {
-        $this->nationalite = $nationalite;
+/**
+ * ecrit le num Nationalite
+ * 
+ * @param Nationalite $nationalite
+ * @return self
+ */
+public function setNationalite(Nationalite $nationalite) : self
+{
+    $this->numNationalite = $nationalite->getNum();
 
-        return $this;
-    }
+    return $this;
+}
+
 }
 ?>

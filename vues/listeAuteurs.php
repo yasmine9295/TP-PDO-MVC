@@ -19,15 +19,14 @@
 
                 <input type="text" class='form-control' id='libelle' placeholder='saisir le libelle' name='libelle' 
                     value="<?php if($action == "Modifier") {echo $laNationalite->libelle ;} ?>">
-                    <input type="text" class='form-control' id='libelle' placeholder='' name='libelle'
-                    value="">
+                   
             </div>
             <div class="col">
-                <select name="continent" class="form-control">
+                <select name="nationalite" class="form-control">
                     <?php
-    foreach($lesContinents as $continent){
-      $selection=$continent->getNum() == $continentSel ? 'selected' : '';
-        echo "<option value='".$continent->getNum()."'". $selection.">".$continent->getLibelle()."</option>";
+    foreach($lesNationalites as $nationalite){
+      $selection=$nationalite->numero == $nationaliteSel ? 'selected' : '';
+        echo "<option value='".$nationalite->numero."'". $selection.">".$nationalite->libNation."</option>";
     }
       ?>
                 </select>
@@ -35,7 +34,8 @@
             <div class="col">
                 <button type="submit" class="btn btn-info btn-block"> Rechercher</button>
             </div>
-
+            </div>
+</form>
 
             <table class="table table-hover table-striped">
                 <thead>
@@ -55,8 +55,7 @@
             echo "<td class='col-md-2'>".$auteur->getNum()."</td>";
             echo "<td class='col-md-4'>".$auteur->getNom()."</td>";
             echo "<td class='col-md-2'>".$auteur->getPrenom()."</td>";  
-            echo "<td class='col-md-2'>".$auteur->getNum()."</td>";
-
+            echo "<td class='col-md-2'>".$nationalite->libNation."</td>";
             echo "<td class='col-md-2'>
                 <a href='index.php?uc=auteurs&action=update&num=" .$auteur->getNum()."' class='btn btn-primary'><i class='fas fa-pen'></i></a>
                 <a href='#modalSuppression' data-toggle='modal' data-message='Voulez vous supprimer cet auteur ?' data-suppression='index.php?uc=auteurs&action=delete&num=".$auteur->getNum()."' class='btn btn-danger'><i class='far fa-trash-alt'></i></a>

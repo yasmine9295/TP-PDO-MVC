@@ -16,10 +16,14 @@ switch($action){
     include('vues/listeLivres.php');
     break;
     case 'add' :
+        $lesGenres=Genre::findAll();
+        $lesAuteurs=Auteur::findAll();
         $mode="Ajouter";
         include('vues/formLivre.php');
     break;
     case 'update' :
+        $lesGenres=Genre::findAll();
+        
         $mode="Modifier";
         $livre=Livre::findById($_GET['num']);
         include('vues/formLivre.php');
