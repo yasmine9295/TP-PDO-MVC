@@ -15,6 +15,8 @@ class Livre {
      */
     private $num;
 
+
+
     /**
      * 
      * 
@@ -39,7 +41,7 @@ class Livre {
     private $annee;
 
     /**
-     * Libelle du Livre
+     * isbn du Livre
      * 
      * @var string
      */
@@ -76,7 +78,7 @@ class Livre {
     }
 
     /**
-     * Lit le libelle
+     * Lit le isbn
      *
      * @return string
      */
@@ -105,20 +107,20 @@ class Livre {
      *
      * @return Livre[] tableau d'objet titre
      */
-    public static function findAll(?string $reference="", ?string $genre="Tous") :array
+    public static function findAll(?string $num="", ?string $genre="Tous") :array
 
     {
-        $texteReq = "select n.num as numero, n.reference as 'libLivre', c.reference as 'libGenre' FROM livre n, genre c where n.numGenre = c.num";
-    if ($reference !== "") {
-        $texteReq .= " and n.reference like '%" . $reference . "%'";
+        $texteReq = "select n.num as numero, n.isbn as 'libNation', c.isbn as 'libgenre' FROM nationalite n, genre c where n.numgenre = c.num";
+    if ($num !== "") {
+        $texteReq .= " and n.isbn like '%" . $isbn . "%'";
     }
-    if ($reference !== "Tous") {
+    if ($genre !== "Tous") {
         $texteReq .= " and c.num = " . $genre;
     }
     
-        $texteReq .= " order by n.reference";
+        $texteReq .= " order by n.num";
         $req=MonPdo::getInstance()->prepare("Select * from livre");
-        $req->setFetchMode(PDO::FETCH_OBJ);
+        $req->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE,'livre');
         $req->execute();
         $lesResultats=$req->fetchAll();
         return $lesResultats;
@@ -352,6 +354,8 @@ class Livre {
 
         return $this;
     }
+
+    
 
     /**
      * Get the value of genre

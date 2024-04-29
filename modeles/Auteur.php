@@ -23,6 +23,9 @@ class Auteur {
      * @var string
      */
     private $prenom;
+
+    
+
     
 
 
@@ -189,28 +192,8 @@ class Auteur {
     }
 
    
-    /**
- *  renvoie l'objet nationalite associé
- * 
- * @return Nationalite
- */
-public function getNationalite() : Nationalite
-{
-    return Nationalite::findbyId($this->numNationalite);
-}
 
-/**
- * ecrit le num Nationalite
- * 
- * @param Nationalite $nationalite
- * @return self
- */
-public function setNationalite(Nationalite $nationalite) : self
-{
-    $this->numNationalite = $nationalite->getNum();
 
-    return $this;
-}
-
+    
 }
 ?>

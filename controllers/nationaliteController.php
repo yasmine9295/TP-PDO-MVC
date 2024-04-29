@@ -15,11 +15,14 @@ switch($action){
     include('vues/listeNationalites.php');
     break;
     case 'add' :
+        
         $mode="Ajouter";
         include('vues/formNationalite.php');
     break;
     case 'update' :
+        
         $mode="Modifier";
+        $lesContinents=Continent::findAll();
         $nationalite=Nationalite::findById($_GET['num']);
         include('vues/formNationalite.php');
     break;

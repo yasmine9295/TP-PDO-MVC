@@ -33,7 +33,7 @@
    animationEnabled: true,
    exportEnabled: true,
    title:{
-     text: "Macaron de types de livres"
+     text: "Gâteaux des types de livres"
    },
    subtitles: [{
      text: "pleins de thèmes disponibles"

@@ -13,16 +13,20 @@
     <form id="formRecherche" action="index.php?uc=auteurs&action=list" method="post"
         class="border border-primary rounded p-3 mt-3 mb-3">
 
-       
         <div class="row">
             <div class="col">
 
-                <input type="text" class='form-control' id='libelle' placeholder='saisir le libelle' name='libelle' 
-                    value="<?php if($action == "Modifier") {echo $laNationalite->libelle ;} ?>">
-                   
+                <input type="text" class='form-control' id='libelle' placeholder='saisir le nom' name='libelle'>
+
             </div>
             <div class="col">
-                <select name="nationalite" class="form-control">
+
+<input type="text" class='form-control' id='libelle' placeholder='saisir prenom' name='libelle'>
+
+</div>
+
+            <div class="col">
+                <select name="genre" class="form-control">
                     <?php
     foreach($lesNationalites as $nationalite){
       $selection=$nationalite->numero == $nationaliteSel ? 'selected' : '';
@@ -58,7 +62,7 @@
             echo "<td class='col-md-2'>".$nationalite->libNation."</td>";
             echo "<td class='col-md-2'>
                 <a href='index.php?uc=auteurs&action=update&num=" .$auteur->getNum()."' class='btn btn-primary'><i class='fas fa-pen'></i></a>
-                <a href='#modalSuppression' data-toggle='modal' data-message='Voulez vous supprimer cet auteur ?' data-suppression='index.php?uc=auteurs&action=delete&num=".$auteur->getNum()."' class='btn btn-danger'><i class='far fa-trash-alt'></i></a>
+                <a href='#modalSuppression' data-toggle='modal' data-message='Voulez vous supprimer cet auteur ?' data-suppression='index.php?uc=auteurs&action=delete&num=".$auteur->getnum()."' class='btn btn-danger'><i class='far fa-trash-alt'></i></a>
             </td>";
         echo "</tr>";
 
